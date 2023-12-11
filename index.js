@@ -1,7 +1,7 @@
 const express = require('express');
 const Moralis = require('moralis').default;
 const cors = require('cors');
-const port = 5000;
+
 
 require('dotenv').config({path: './.env'});
 const app = express();
@@ -25,7 +25,6 @@ app.use('/api/dex', dex);
 Moralis.start({
     apiKey: process.env.MORALIS_KEY,
 }).then(() => {
-    app.listen(port, () => {
-        console.log(`listening on ${port}`)
-    })
+    const port = process.env.PORT || 5000;
+    app.listen(port, ()=> console.log(`Server listening on port ${port}`));
 });
